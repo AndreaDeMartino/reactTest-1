@@ -19,14 +19,14 @@ class App extends Component {
     ]
   }
 
-  // Funzione per cambiare un nome
-  cambiaNome = () => {
+  // Funzione per cambiare un nome, per sfruttare this usa sempre le arrow Function =>
+  cambiaNome = (name) => {
     console.log('Bottone Clickato');
     // setState permette di modificare il contenuto di una variabile senza sovrascrivere quello che non dichiari.
     this.setState({
       persons: [
         {
-          nome: 'NOME DINAMICO 1',
+          nome: name,
           eta: 27
         },
       ]
@@ -40,11 +40,15 @@ class App extends Component {
 
         <h1> Hi I'm React App</h1>
 
-        {/* Richiami la funzione con this. */}
-        <button onClick={this.cambiaNome}>CAMBIA NOME </button>
+        {/* Richiami la funzione con this. e usando .bind puoi gestire il valore del parametro della funzione, in questo caso "NOME DINAMICO BUTTON" */}
+        <button onClick={this.cambiaNome.bind(this, 'NOME DINAMICO BUTTON')}>CAMBIA NOME </button>
 
         {/* Sfrutti le props del file person.js */}
-        <Person name = "NOME PADRE!"/>
+        <Person 
+          name = "NOME PADRE!"
+          // Posso passare la funzione al person.js in questo modo:
+          click = {this.cambiaNome.bind(this, 'NOME DINAMICO H3')}
+        />
         <Person name = 'FIGLIO'>IO sono il figlio</Person>
 
         {/* Con this.state usi le variabili dichiarate con state in precedenza */}
