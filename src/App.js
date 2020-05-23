@@ -1,5 +1,4 @@
-// Importo anche UseState che permette di aggiornare componenti in modo dinamico e di sostituire il contenuto.
-
+// Import anche di Component per gestirlo nella class
 import React, { Component } from 'react';
 import './App.css';
 import Person from './Person/person';
@@ -34,7 +33,7 @@ class App extends Component {
     })
   }
 
-  // Qui fai un rendere del return del codice jsx
+  // Render del return del codice jsx
   render() {
     return (
       <div className="App">
