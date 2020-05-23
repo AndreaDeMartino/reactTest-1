@@ -1,17 +1,59 @@
-import React from 'react';
+// Importo anche UseState che permette di aggiornare componenti in modo dinamico e di sostituire il contenuto.
+
+import React, { Component } from 'react';
 import './App.css';
 import Person from './Person/person';
 
-function App() {
-  return (
-    <div className="App">
-      <h1> Hi I'm React App</h1>
-      <p> This is really working!</p>
-      <Person name = "PIPPO!"/>
-      <Person>IO sono il figlio di Person</Person>
-      <Person/>
-    </div>
-  );
+// La classe App si estende al componente react "Component", con questo strumento posso utilizzare le proprietà di this che permettono di aggiornare i dati in modo dinamico, React fa un refresh dei cambiamenti in tempo reale.
+class App extends Component {
+  // Variabili si dichiarano senza var/let/const
+  state = {
+    persons: [
+      {
+        nome: 'Andrea',
+        eta: 27
+      },
+      {
+        nome: 'Paola',
+        eta: 25
+      }
+    ]
+  }
+
+  // Funzione per cambiare un nome
+  cambiaNome = () => {
+    console.log('Bottone Clickato');
+    // setState permette di modificare il contenuto di una variabile senza sovrascrivere quello che non dichiari.
+    this.setState({
+      persons: [
+        {
+          nome: 'Pippo',
+          eta: 27
+        },
+      ]
+    })
+  }
+
+  // Qui fai un rendere del return del codice jsx
+  render() {
+    return (
+      <div className="App">
+
+        <h1> Hi I'm React App</h1>
+
+        {/* Richiami la funzione con this. */}
+        <button onClick={this.cambiaNome}>CAMBIA NOME </button>
+
+        {/* Sfrutti le props del file person.js */}
+        <Person name = "NOME PADRE!"/>
+        <Person name = 'FIGLIO'>IO sono il figlio</Person>
+
+        {/* Con this.state usi le variabili dichiarate con state in precedenza */}
+        <Person name = {this.state.persons[0].nome}/>
+
+      </div>
+    );
+  }
 }
 
 export default App;
