@@ -10,11 +10,11 @@ class App extends Component {
   state = {
     persons: [
       {
-        nome: 'Andrea',
+        nome: 'NOME STATICO 1',
         eta: 27
       },
       {
-        nome: 'Paola',
+        nome: 'NOME STATICO 2',
         eta: 25
       }
     ]
@@ -27,7 +27,7 @@ class App extends Component {
     this.setState({
       persons: [
         {
-          nome: 'Pippo',
+          nome: 'NOME DINAMICO 1',
           eta: 27
         },
       ]
